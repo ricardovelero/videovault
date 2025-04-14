@@ -1,9 +1,6 @@
 Rails.application.routes.draw do
   get "invites/show"
   namespace :user do
-    get "invitations/index"
-    get "invitations/new"
-    get "invitations/create"
     resources :videos, only: [ :index, :show ]
     resources :invitations, only: [ :new, :create, :index ]
   end

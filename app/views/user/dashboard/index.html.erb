@@ -1,4 +1,19 @@
-<div>
-  <h1 class="font-bold text-4xl">User::Dashboard#index</h1>
-  <p>Find me in app/views/user/dashboard/index.html.erb</p>
-</div>
+<h1 class="text-xl font-bold mb-4">Bienvenido, <%= current_user.email %></h1>
+
+<h2 class="text-lg font-semibold mt-6 mb-2">Tus últimas invitaciones</h2>
+<ul>
+  <% @recent_invitations.each do |inv| %>
+    <li>
+      <%= inv.email %> → <%= link_to "ver enlace", inv.link, target: "_blank", class: "text-blue-600 underline" %>
+    </li>
+  <% end %>
+</ul>
+
+<h2 class="text-lg font-semibold mt-6 mb-2">Videos recomendados</h2>
+<ul>
+  <% @videos.each do |video| %>
+    <li>
+      <%= link_to video.title, user_video_path(video), class: "text-blue-600 underline" %>
+    </li>
+  <% end %>
+</ul>
