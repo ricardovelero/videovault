@@ -1,4 +1,24 @@
-<div>
-  <h1 class="font-bold text-4xl">User::Invitations#index</h1>
-  <p>Find me in app/views/user/invitations/index.html.erb</p>
-</div>
+<h1 class="text-xl font-bold mb-4">Your invites</h1>
+
+<table class="w-full table-auto border-collapse">
+  <thead>
+    <tr class="bg-gray-100">
+      <th class="text-left p-2 border">Client</th>
+      <th class="text-left p-2 border">Video</th>
+      <th class="text-left p-2 border">Link</th>
+      <th class="text-left p-2 border">Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @invitations.each do |invitation| %>
+      <tr class="border-t">
+        <td class="p-2"><%= invitation.email %></td>
+        <td class="p-2"><%= invitation.video.title %></td>
+        <td class="p-2">
+          <%= link_to "View", invitation.link, target: "_blank", class: "text-blue-600 underline" %>
+        </td>
+        <td class="p-2"><%= invitation.created_at.strftime("%d/%m/%Y") %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

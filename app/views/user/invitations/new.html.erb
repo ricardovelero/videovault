@@ -1,4 +1,15 @@
-<div>
-  <h1 class="font-bold text-4xl">User::Invitations#new</h1>
-  <p>Find me in app/views/user/invitations/new.html.erb</p>
-</div>
+<h1 class="text-xl font-bold mb-4">Send an invtiatio to view video</h1>
+
+<%= form_with model: @invitation, url: user_invitations_path, local: true do |form| %>
+  <div class="mb-4">
+    <%= form.label :email, "Email" %>
+    <%= form.email_field :email, class: "w-full p-2 border rounded" %>
+  </div>
+
+  <div class="mb-4">
+    <%= form.label :video_id, "Select a video" %>
+    <%= form.collection_select :video_id, @videos, :id, :title, prompt: "Choose a video", class: "w-full p-2 border rounded" %>
+  </div>
+
+  <%= form.submit "Send invitation", class: "bg-green-600 text-white px-4 py-2 rounded" %>
+<% end %>
