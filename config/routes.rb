@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   get "invites/show"
   namespace :user do
+    get "dashboard", to: "dashboard#index"
     resources :videos, only: [ :index, :show ]
-    resources :invitations, only: [ :new, :create, :index ]
+    resources :invitations, only: [ :new, :create, :index, :destroy ]
   end
 
   get "/invite/:token", to: "invites#show", as: :invite

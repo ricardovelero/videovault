@@ -16,6 +16,7 @@
       <p><strong>Cliente:</strong> <%= invitation.email %></p>
       <p><strong>Video:</strong> <%= invitation.video.title %></p>
       <p><%= link_to "Ver enlace", invitation.link, target: "_blank", class: "text-blue-600 underline" %></p>
+      <%= button_to "Eliminar", user_invitation_path(invitation), method: :delete, data: { confirm: "¿Eliminar esta invitación?" }, class: "mt-2 text-red-600 underline bg-transparent border-0 cursor-pointer" %>
     </li>
   <% end %>
 </ul>

@@ -22,6 +22,12 @@ class User::InvitationsController < ApplicationController
     end
   end
 
+  def destroy
+    @invitation = current_user.invitations.find(params[:id])
+    @invitation.destroy
+    redirect_to user_dashboard_path, notice: "Invitation deleted successfully."
+  end
+
   private
 
   def invitation_params
