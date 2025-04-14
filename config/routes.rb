@@ -1,12 +1,19 @@
 Rails.application.routes.draw do
+  get "invites/show"
   namespace :user do
-    get "videos/index"
-    get "videos/show"
+    get "invitations/index"
+    get "invitations/new"
+    get "invitations/create"
     resources :videos, only: [ :index, :show ]
+    resources :invitations, only: [ :new, :create, :index ]
   end
+
+  get "/invite/:token", to: "invites#show", as: :invite
+
   namespace :admin do
     resources :videos, only: [ :index, :new, :create, :show ]
   end
+
   devise_for :users
 
   authenticated :user, ->(u) { u.admin? } do
