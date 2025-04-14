@@ -1,19 +1,21 @@
-<h1 class="text-xl font-bold mb-4">Bienvenido, <%= current_user.email %></h1>
+<h1 class="text-2xl font-bold mb-4">Tu Panel</h1>
 
-<h2 class="text-lg font-semibold mt-6 mb-2">Tus últimas invitaciones</h2>
-<ul>
-  <% @recent_invitations.each do |inv| %>
-    <li>
-      <%= inv.email %> → <%= link_to "ver enlace", inv.link, target: "_blank", class: "text-blue-600 underline" %>
-    </li>
-  <% end %>
-</ul>
+<p class="mb-6">Hola, <%= current_user.email %> 👋</p>
 
-<h2 class="text-lg font-semibold mt-6 mb-2">Videos recomendados</h2>
-<ul>
-  <% @videos.each do |video| %>
-    <li>
-      <%= link_to video.title, user_video_path(video), class: "text-blue-600 underline" %>
+<div class="mb-4 space-x-4">
+  <%= link_to "Ver videos", user_videos_path, class: "bg-blue-600 text-white px-4 py-2 rounded" %>
+  <%= link_to "Nueva invitación", new_user_invitation_path, class: "bg-green-600 text-white px-4 py-2 rounded" %>
+  <%= link_to "Historial de invitaciones", user_invitations_path, class: "bg-gray-600 text-white px-4 py-2 rounded" %>
+</div>
+
+<h2 class="text-xl font-semibold mt-6 mb-2">Últimas invitaciones</h2>
+
+<ul class="space-y-2">
+  <% @invitations.each do |invitation| %>
+    <li class="border p-4 rounded bg-white shadow">
+      <p><strong>Cliente:</strong> <%= invitation.email %></p>
+      <p><strong>Video:</strong> <%= invitation.video.title %></p>
+      <p><%= link_to "Ver enlace", invitation.link, target: "_blank", class: "text-blue-600 underline" %></p>
     </li>
   <% end %>
 </ul>

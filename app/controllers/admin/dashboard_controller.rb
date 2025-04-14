@@ -3,6 +3,7 @@ class Admin::DashboardController < ApplicationController
   before_action :ensure_admin!
 
   def index
+    @videos = current_user.videos.order(created_at: :desc).limit(5)
   end
 
   private

@@ -1,4 +1,20 @@
-<div>
-  <h1 class="font-bold text-4xl">Admin::Dashboard#index</h1>
-  <p>Find me in app/views/admin/dashboard/index.html.erb</p>
+<h1 class="text-2xl font-bold mb-4">Admin Panel</h1>
+
+<p class="">Welcome, <%= current_user.email %> 👋</p>
+<p class="text-sm text-gray-600 mb-6">Your role is: <%= current_user.role %></p>
+
+<div class="mb-4">
+  <%= link_to "Upload new video", new_admin_video_path, class: "bg-green-600 text-white px-4 py-2 rounded" %>
+  <%= link_to "View all videos", admin_videos_path, class: "ml-4 text-blue-600 underline" %>
 </div>
+
+<h2 class="text-xl font-semibold mt-6 mb-2">Latest videos uploaded</h2>
+
+<ul class="space-y-2">
+  <% @videos.each do |video| %>
+    <li class="border p-4 rounded bg-white shadow">
+      <h3 class="font-semibold"><%= video.title %></h3>
+      <%= link_to "View", admin_video_path(video), class: "text-blue-600 underline" %>
+    </li>
+  <% end %>
+</ul>
