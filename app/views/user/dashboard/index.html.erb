@@ -2,7 +2,7 @@
 
 <p class="mb-6">Hola, <%= current_user.email %> 👋</p>
 
-<div class="mb-4 space-x-4">
+<div data-controller="hello" class="mb-4 space-x-4">
   <%= link_to "Ver videos", user_videos_path, class: "bg-blue-600 text-white px-4 py-2 rounded" %>
   <%= link_to "Nueva invitación", new_user_invitation_path, class: "bg-green-600 text-white px-4 py-2 rounded" %>
   <%= link_to "Historial de invitaciones", user_invitations_path, class: "bg-gray-600 text-white px-4 py-2 rounded" %>
