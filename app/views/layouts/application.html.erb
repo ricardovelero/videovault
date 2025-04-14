@@ -38,8 +38,7 @@
   <body>
     <main class="container mx-auto mt-28 px-5 flex">
       <div>
-        <p class="notice"><%= notice %></p>
-        <p class="alert"><%= alert %></p>
+        <%= render 'shared/flash' %>
       </div>
       <div class="min-h-full">
         <%= yield %>
