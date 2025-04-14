@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   namespace :user do
-    get "dashboard/index"
+    get "videos/index"
+    get "videos/show"
+    resources :videos, only: [ :index, :show ]
   end
   namespace :admin do
     resources :videos, only: [ :index, :new, :create, :show ]
