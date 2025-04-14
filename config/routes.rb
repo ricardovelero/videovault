@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     get "dashboard/index"
   end
   namespace :admin do
-    get "dashboard/index"
+    resources :videos, only: [ :index, :new, :create, :show ]
   end
   devise_for :users
 

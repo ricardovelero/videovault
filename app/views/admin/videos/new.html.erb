@@ -1,0 +1,20 @@
+<h1 class="text-xl font-bold mb-4">Subir Video</h1>
+
+<%= form_with model: @video, url: admin_videos_path, local: true, html: { multipart: true } do |form| %>
+  <div class="mb-4">
+    <%= form.label :title %>
+    <%= form.text_field :title, class: "border rounded w-full p-2" %>
+  </div>
+
+  <div class="mb-4">
+    <%= form.label :description %>
+    <%= form.text_area :description, class: "border rounded w-full p-2" %>
+  </div>
+
+  <div class="mb-4">
+    <%= form.label :file, "Archivo de video" %>
+    <%= form.file_field :file, class: "border rounded w-full p-2" %>
+  </div>
+
+  <%= form.submit "Subir", class: "bg-green-500 text-white px-4 py-2 rounded" %>
+<% end %>

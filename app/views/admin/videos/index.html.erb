@@ -1,0 +1,12 @@
+<h1 class="text-xl font-bold mb-4">Tus Videos</h1>
+
+<%= link_to "Subir nuevo video", new_admin_video_path, class: "bg-blue-500 text-white px-4 py-2 rounded" %>
+
+<ul class="mt-4 space-y-4">
+  <% @videos.each do |video| %>
+    <li>
+      <h2 class="font-semibold"><%= video.title %></h2>
+      <%= link_to "Ver", admin_video_path(video), class: "text-blue-600 underline" %>
+    </li>
+  <% end %>
+</ul>

@@ -1,0 +1,8 @@
+<h1 class="text-xl font-bold mb-4"><%= @video.title %></h1>
+
+<video controls class="w-full max-w-3xl">
+  <source src="<%= url_for(@video.file) %>" type="<%= @video.file.content_type %>">
+  Tu navegador no soporta reproducción de video.
+</video>
+
+<p class="mt-4 text-gray-700"><%= @video.description %></p>
