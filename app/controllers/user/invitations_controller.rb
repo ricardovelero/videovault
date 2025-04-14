@@ -14,8 +14,10 @@ class User::InvitationsController < ApplicationController
   def create
     @invitation = current_user.invitations.build(invitation_params)
     if @invitation.save
-      redirect_to user_invitations_path, notice: "Sent invitation. Link: #{@invitation.link}"
+      InvitationMailer.invite(@invitation).deliver_later
+      redirect_to user_invitations_path, notice: "Invitation sent successfully. Link: #{@invitation.link}"
     else
+      @videos = Video.all
       render :new
     end
   end
