@@ -1,7 +1,4 @@
-class User::InvitationsController < ApplicationController
-  before_action :authenticate_user!
-  before_action :ensure_regular_user!
-
+class User::DashboardController < User::BaseController
   def index
     @invitations = current_user.invitations.includes(:video)
   end
@@ -32,9 +29,5 @@ class User::InvitationsController < ApplicationController
 
   def invitation_params
     params.require(:invitation).permit(:email, :video_id)
-  end
-
-  def ensure_regular_user!
-    redirect_to root_path unless current_user.user?
   end
 end
