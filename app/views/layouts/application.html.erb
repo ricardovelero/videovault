@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -35,8 +36,18 @@
 
   </head>
 
-  <body>
-    <main class="container mx-auto mt-28 px-5 flex">
+  <body class="bg-background text-foreground font-sans">
+    <nav class="flex justify-between items-center p-4 bg-white border-b">
+      <div class="font-bold">
+        <%= link_to "Video Vault", root_path %>
+      </div>
+      <div class="flex items-center gap-4">
+        <%= nav_link t('.home'), root_path %>
+        <%= nav_link t('.invitations'), user_invitations_path %>
+        <%= nav_link t('.new_invitation'), new_user_invitation_path %>
+      </div>
+    </nav>
+    <main class="container mx-auto px-1 py-1 sm:py-2 sm:px-6 lg:p-12">
       <div>
         <%= render 'shared/flash' %>
       </div>

@@ -1,22 +1,41 @@
-<h1 class="text-2xl font-bold mb-4">Tu Panel</h1>
+<h1 class="text-2xl font-bold mb-4"><%= t '.your_panel' %></h1>
 
-<p class="mb-6">Hola, <%= current_user.email %> 👋</p>
+<p class="mb-6"><%= t(".hello") %>, <%= current_user.email %></p>
 
 <div data-controller="hello" class="mb-4 space-x-4">
-  <%= link_to "Ver videos", user_videos_path, class: "bg-blue-600 text-white px-4 py-2 rounded" %>
-  <%= link_to "Nueva invitación", new_user_invitation_path, class: "bg-green-600 text-white px-4 py-2 rounded" %>
-  <%= link_to "Historial de invitaciones", user_invitations_path, class: "bg-gray-600 text-white px-4 py-2 rounded" %>
+  <%= link_to t(".view_videos"), user_videos_path, class: "bg-blue-600 text-white px-4 py-2 rounded" %>
+  <%= link_to t(".new_invitation"), new_user_invitation_path, class: "bg-green-600 text-white px-4 py-2 rounded" %>
+  <%= link_to t(".invitation_history"), user_invitations_path, class: "bg-gray-600 text-white px-4 py-2 rounded" %>
 </div>
 
-<h2 class="text-xl font-semibold mt-6 mb-2">Últimas invitaciones</h2>
+<h2 class="text-xl font-semibold mt-6 mb-2"><%= t '.latest_invitations' %></h2>
 
 <ul class="space-y-2">
   <% @invitations.each do |invitation| %>
     <li class="border p-4 rounded bg-white shadow">
-      <p><strong>Cliente:</strong> <%= invitation.email %></p>
-      <p><strong>Video:</strong> <%= invitation.video.title %></p>
-      <p><%= link_to "Ver enlace", invitation.link, target: "_blank", class: "text-blue-600 underline" %></p>
-      <%= button_to "Eliminar", user_invitation_path(invitation), method: :delete, data: { confirm: "¿Eliminar esta invitación?" }, class: "mt-2 text-red-600 underline bg-transparent border-0 cursor-pointer" %>
+      <div class="flex items-center justify-between">
+        <div>
+          <p><strong><%= t '.client' %>:</strong> <%= invitation.email %></p>
+          <p><strong><%= t(".video") %>:</strong> <%= invitation.video.title %></p>
+        </div>
+        <div data-controller="dropdown" class="relative">
+          <button data-action="click->dropdown#toggle" class="text-primary hover:text-primary-foreground cursor-pointer">
+            <%= lucide_icon("more-vertical", class: "w-5 h-5 text-primary hover:text-blue-800") %>
+          </button>
+          <div data-dropdown-target="menu" class="absolute right-0 mt-2 w-40 bg-background border border-gray-200 rounded shadow-lg opacity-0 scale-95 transition-all duration-150 ease-out pointer-events-none hidden">
+            <div class="p-4">
+              <%= link_to invitation.link, target: "_blank", class: "flex items-center gap-2 p-2 text-primary hover:text-primary/90 hover:bg-secondary" do %>
+                <%= lucide_icon("eye", class: "w-4 h-4") %>
+                <%= t(".view_link") %>
+              <% end %>
+              <%= link_to user_invitation_path(invitation), data: { turbo_method: :delete, turbo_confirm: t('confirmation') }, class: "flex items-center gap-2 p-2 text-red-600 hover:text-red-400 hover:bg-secondary" do %>
+                <%= lucide_icon("trash", class: "w-4 h-4") %>
+                <%= t('.delete') %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
     </li>
   <% end %>
 </ul>
