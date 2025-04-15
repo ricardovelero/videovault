@@ -43,8 +43,6 @@
       </div>
       <div class="flex items-center gap-4">
         <%= nav_link t('.home'), root_path %>
-        <%= nav_link t('.invitations'), user_invitations_path %>
-        <%= nav_link t('.new_invitation'), new_user_invitation_path %>
         <%= link_to t('.sign_out'), destroy_user_session_path, method: :delete, data: { turbo_method: :delete, turbo_confirm: t('.delete_session_confirmation') }, class: "text-red-600" %>
       </div>
     </nav>

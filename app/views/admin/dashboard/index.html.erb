@@ -8,13 +8,22 @@
   <%= link_to "View all videos", admin_videos_path, class: "ml-4 text-blue-600 underline" %>
 </div>
 
-<h2 class="text-xl font-semibold mt-6 mb-2">Latest videos uploaded</h2>
+<h2 class="text-xl font-semibold mt-6 mb-4">Latest videos uploaded</h2>
 
-<ul class="space-y-2">
+<ul class="space-y-4">
   <% @videos.each do |video| %>
-    <li class="border p-4 rounded bg-white shadow">
+    <li class="flex justify-between items-center w-1/2 border p-4 rounded bg-background shadow">
       <h3 class="font-semibold"><%= video.title %></h3>
-      <%= link_to "View", admin_video_path(video), class: "text-blue-600 underline" %>
+      <div class="flex items-center">
+        <%= link_to admin_video_path(video), target: "_blank", class: "flex items-center gap-2 p-2 text-primary hover:text-primary/90 hover:bg-secondary" do %>
+          <%= lucide_icon("eye", class: "w-4 h-4") %>
+          <%= t(".view") %>
+        <% end %>
+        <%= link_to admin_video_path(video), data: { turbo_method: :delete, turbo_confirm: t('confirmation') }, class: "flex items-center gap-2 p-2 text-red-600 hover:text-red-400 hover:bg-secondary" do %>
+          <%= lucide_icon("trash", class: "w-4 h-4") %>
+          <%= t('.delete') %>
+        <% end %>
+      </div>
     </li>
   <% end %>
 </ul>
