@@ -2,8 +2,8 @@
 # check=error=true
 
 # This Dockerfile is designed for production, not development. Use with Kamal or build'n'run by hand:
-# docker build -t videoplus .
-# docker run -d -p 80:80 -e RAILS_MASTER_KEY=<value from config/master.key> --name videoplus videoplus
+# docker build -t videovault .
+# docker run -d -p 80:80 -e RAILS_MASTER_KEY=<value from config/master.key> --name videovault videovault
 
 # For a containerized dev environment, see Dev Containers: https://guides.rubyonrails.org/getting_started_with_devcontainer.html
 
