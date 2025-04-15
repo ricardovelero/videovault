@@ -1,0 +1,5 @@
+en:
+  layouts:
+    application:
+      sign_out: Logout
+      delete_session_confirmation: Are you sure?

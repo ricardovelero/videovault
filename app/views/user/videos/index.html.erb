@@ -1,11 +1,14 @@
-<h1 class="text-xl font-bold mb-4">Videos disponibles</h1>
+<h1 class="text-xl font-bold mb-4"><%= t '.available_videos' %></h1>
 
 <ul class="space-y-4">
   <% @videos.each do |video| %>
-    <li class="border p-4 rounded bg-white shadow">
+    <li class="border p-4 rounded bg-background shadow">
       <h2 class="font-semibold"><%= video.title %></h2>
-      <p class="text-gray-600 text-sm">Subido por: <%= video.user.email %></p>
-      <%= link_to "Ver video", user_video_path(video), class: "text-blue-600 underline" %>
+      <p class="text-gray-600 text-sm"><%= t '.uploaded_by' %>: <%= video.user.email %></p>
+      <%= link_to user_video_path(video), class: "flex items-center gap-1 p-2 text-primary hover:text-primary/90" do %>
+        <%= lucide_icon("eye", class: "w-4 h-4") %>
+        <%= t(".view_video") %>
+      <% end %>
     </li>
   <% end %>
 </ul>
