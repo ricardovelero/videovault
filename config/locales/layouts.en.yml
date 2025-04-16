@@ -5,3 +5,5 @@ en:
       delete_session_confirmation: Are you sure?
     home:
       sign_in: Sign in
+    user_dashboard:
+      delete_session_confirmation: Are you sure you want to logout?

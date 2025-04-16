@@ -13,7 +13,7 @@ class Admin::VideosController < ApplicationController
   def create
     @video = current_user.videos.build(video_params)
     if @video.save
-      redirect_to admin_videos_path, notice: "Video uploaded correctly"
+      redirect_to root_path, notice: "Video uploaded correctly"
     else
       render :new
     end
@@ -21,6 +21,12 @@ class Admin::VideosController < ApplicationController
 
   def show
     @video = current_user.videos.find(params[:id])
+  end
+
+  def destroy
+    @video = current_user.videos.find(params[:id])
+    @video.destroy
+    redirect_to root_path, notice: "Video deleted successfully"
   end
 
   private

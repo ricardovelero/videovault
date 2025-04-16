@@ -4,3 +4,4 @@ en:
       index:
         view: View
         delete: Delete
+        confirmation: Are you sure?

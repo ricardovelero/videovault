@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get "/invite/:token", to: "invites#show", as: :invite
 
   namespace :admin do
-    resources :videos, only: [ :index, :new, :create, :show ]
+    resources :videos
   end
 
   devise_for :users
