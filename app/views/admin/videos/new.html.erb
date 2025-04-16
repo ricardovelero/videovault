@@ -1,4 +1,4 @@
-<h1 class="text-xl font-bold mb-4">Subir Video</h1>
+<h1 class="text-xl font-bold mb-4">Upload a Video</h1>
 
 <%= form_with model: @video, url: admin_videos_path, local: true, html: { multipart: true } do |form| %>
   <div class="mb-4">
@@ -12,9 +12,40 @@
   </div>
 
   <div class="mb-4">
-    <%= form.label :file, "Archivo de video" %>
-    <%= form.file_field :file, class: "border rounded w-full p-2" %>
+    <%= form.label :upload_file, "Video file" %>
+    <%= form.file_field :upload_file, class: "border rounded w-full p-2" %>
   </div>
 
-  <%= form.submit "Subir", class: "bg-green-500 text-white px-4 py-2 rounded" %>
+  <div class="mb-4">
+    <label class="block mb-1">Vista previa</label>
+    <video id="video-preview" class="w-full border rounded" controls style="display: none;"></video>
+  </div>
+
+  <p id="video-info" class="text-sm text-gray-600 mt-2"></p>
+
+  <%= form.submit "Upload", class: "bg-green-500 text-white px-4 py-2 rounded" %>
 <% end %>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const input = document.querySelector('input[type="file"][name="video[upload_file]"]');
+    const preview = document.getElementById("video-preview");
+    const info = document.getElementById("video-info");
+
+    input.addEventListener("change", function () {
+      const file = input.files[0];
+      if (file && file.type.startsWith("video/")) {
+        const url = URL.createObjectURL(file);
+        preview.src = url;
+        preview.style.display = "block";
+
+        const sizeMB = (file.size / (1024 * 1024)).toFixed(2);
+        info.textContent = `${file.name} — ${sizeMB} MB`;
+      } else {
+        preview.style.display = "none";
+        preview.src = "";
+        info.textContent = "";
+      }
+    });
+  });
+</script>

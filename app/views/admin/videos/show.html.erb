@@ -1,8 +1,8 @@
-<h1 class="text-xl font-bold mb-4"><%= @video.title %></h1>
-
-<video controls class="w-full max-w-3xl">
-  <source src="<%= url_for(@video.file) %>" type="<%= @video.file.content_type %>">
-  Tu navegador no soporta reproducción de video.
-</video>
-
-<p class="mt-4 text-gray-700"><%= @video.description %></p>
+<% if @video.file_url.present? %>
+  <video controls class="w-full max-w-3xl">
+    <source src="<%= @video.file_url %>" type="video/mp4">
+    Your browser does not suppor video reproduction.
+  </video>
+<% else %>
+  <p class="text-red-500">This video has not been uploaded correctly.</p>
+<% end %>

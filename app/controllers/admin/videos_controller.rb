@@ -11,7 +11,8 @@ class Admin::VideosController < ApplicationController
   end
 
   def create
-    @video = current_user.videos.build(video_params)
+    @video = current_user.videos.build(video_params.except(:upload_file))
+    @video.upload_file = video_params[:upload_file]
     if @video.save
       redirect_to root_path, notice: "Video uploaded correctly"
     else
@@ -32,7 +33,7 @@ class Admin::VideosController < ApplicationController
   private
 
   def video_params
-    params.require(:video).permit(:title, :description, :file)
+    params.require(:video).permit(:title, :description, :upload_file)
   end
 
   def ensure_admin!
