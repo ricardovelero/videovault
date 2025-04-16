@@ -1,4 +1,4 @@
-class User::DashboardController < User::BaseController
+class User::InvitationsController < User::BaseController
   def index
     @invitations = current_user.invitations.includes(:video)
   end

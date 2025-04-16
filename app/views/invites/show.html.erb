@@ -3,7 +3,7 @@
 <h2 class="text-lg font-semibold"><%= @video.title %></h2>
 
 <video controls class="w-full max-w-3xl my-4">
-  <source src="<%= url_for(@video.file) %>" type="<%= @video.file.content_type %>">
+  <source src="<%= @video.file_url %>" type="video/mp4">
   Your browser doesn't support this video.
 </video>
 
