@@ -6,7 +6,7 @@ class Video < ApplicationRecord
 
   attr_accessor :upload_file
   validates :title, presence: true
-  validates :upload_file, presence: true
+  validates :upload_file, presence: true, on: :create
 
   before_create :upload_to_cloudinary
 

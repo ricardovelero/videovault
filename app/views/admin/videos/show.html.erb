@@ -1,5 +1,5 @@
 <% if @video.file_url.present? %>
-  <video controls class="w-full max-w-3xl">
+  <video controls class="w-full max-w-3xl max-h-[calc(100vh-10rem)]" preload="auto">
     <source src="<%= @video.file_url %>" type="video/mp4">
     Your browser does not suppor video reproduction.
   </video>
