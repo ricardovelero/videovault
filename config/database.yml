@@ -82,7 +82,9 @@ production:
     <<: *default
     database: videovault_production
     username: videovault
-    password: <%= ENV["VIDEOPLUS_DATABASE_PASSWORD"] %>
+    password: <%= ENV["DATABASE_PASSWORD"] %>
+    port: <%= ENV["DATABASE_PORT"] %>
+    hostname: <%= ENV["DATABASE_HOSTNAME"] %>
   cache:
     <<: *primary_production
     database: videovault_production_cache
