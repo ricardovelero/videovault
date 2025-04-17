@@ -1,6 +1,18 @@
 <h1 class="text-xl font-bold mb-4">Send an invitation to share a video</h1>
 
-<%= form_with model: @invitation, url: user_invitations_path, local: true do |form| %>
+<%= form_with model: @invitation, url: user_invitations_path, local: true, data: { turbo: false } do |form| %>
+
+  <% if @invitation.errors.any? %>
+    <div class="mb-6 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+      <p class="font-bold mb-2"><%= t('errors.messages.not_saved', count: @invitation.errors.count, resource: 'invitation') %></p>
+      <ul class="list-disc list-inside text-sm">
+        <% @invitation.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
   <div class="grid grid-cols-2 gap-4">
     <div class="flex flex-col mb-4">
       <%= form.label :email, "Email" %>

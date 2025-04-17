@@ -1,6 +1,17 @@
 <h1 class="text-xl font-bold mb-4">Upload a Video</h1>
 
 <%= form_with model: @video, url: admin_videos_path, local: true, html: { multipart: true } do |form| %>
+  <% if @video.errors.any? %>
+    <div class="mb-6 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+      <p class="font-bold mb-2"><%= t('errors.messages.not_saved', count: @video.errors.count, resource: 'video') %></p>
+      <ul class="list-disc list-inside text-sm">
+        <% @video.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
   <div class="mb-4">
     <%= form.label :title %>
     <%= form.text_field :title, class: "border rounded w-full p-2" %>
