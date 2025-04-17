@@ -3,6 +3,12 @@
 <%= link_to "Upload new video", new_admin_video_path, class: "bg-blue-500 text-white px-4 py-2 rounded" %>
 
 <ul class="mt-4 space-y-4">
+  <% if @videos.empty? %>
+    <li class="border p-4 rounded bg-gray-100 text-center text-gray-500 space-y-4">
+      <p><%= t('.no_videos_uploaded', default: 'No videos uploaded yet.') %></p>
+      <%= link_to t('.upload_now', default: 'Upload your first video'), new_admin_video_path, class: "inline-block bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded" %>
+    </li>
+  <% end %>
   <% @videos.each do |video| %>
     <li>
       <h2 class="font-semibold"><%= video.title %></h2>

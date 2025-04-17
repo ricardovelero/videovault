@@ -11,6 +11,11 @@
 <h2 class="text-xl font-semibold mt-6 mb-4">Latest videos uploaded</h2>
 
 <ul class="space-y-4">
+  <% if @videos.empty? %>
+    <li class="border p-4 rounded bg-gray-100 text-center text-gray-500 w-1/2">
+      <%= t('.no_videos_uploaded', default: 'No videos uploaded yet.') %>
+    </li>
+  <% end %>
   <% @videos.each do |video| %>
     <li class="flex justify-between items-center w-1/2 border p-4 rounded bg-background shadow">
       <h3 class="font-semibold"><%= video.title %></h3>
