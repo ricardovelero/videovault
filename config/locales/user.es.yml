@@ -1,0 +1,6 @@
+es:
+  user:
+    dashboard:
+      index:
+        your_panel: Tu Panel
+        hello: Hola

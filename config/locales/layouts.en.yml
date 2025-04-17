@@ -7,3 +7,7 @@ en:
       sign_in: Sign in
     user_dashboard:
       delete_session_confirmation: Are you sure you want to logout?
+      home: Home
+      invitations: Invitations
+      new_invitation: New Invitation
+      sign_out: Sign Out

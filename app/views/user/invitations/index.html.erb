@@ -10,6 +10,13 @@
     </tr>
   </thead>
   <tbody>
+    <% if @invitations.empty? %>
+      <tr>
+        <td colspan="4" class="text-center text-gray-500 py-8">
+          <%= t('.no_invitations_yet', default: 'No invitations yet.') %>
+        </td>
+      </tr>
+    <% end %>
     <% @invitations.each do |invitation| %>
       <tr class="border-t">
         <td class="p-2"><%= invitation.email %></td>

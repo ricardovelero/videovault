@@ -1,6 +1,11 @@
 <h1 class="text-xl font-bold mb-4"><%= t '.available_videos' %></h1>
 
 <ul class="space-y-4">
+  <% if @videos.empty? %>
+    <li class="border p-4 rounded bg-gray-100 text-center text-gray-500">
+      <%= t('.no_videos_uploaded', default: 'No videos uploaded yet.') %>
+    </li>
+  <% end %>
   <% @videos.each do |video| %>
     <li class="border p-4 rounded bg-background shadow">
       <h2 class="font-semibold"><%= video.title %></h2>

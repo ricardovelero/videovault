@@ -1,0 +1,10 @@
+en:
+  user:
+    dashboard:
+      index:
+        your_panel: Your Panel
+        hello: Hello
+        view_videos: View Videos
+        new_invitation: New Invitation
+        invitation_history: Invitation History
+        latest_invitations: Latest Invitations

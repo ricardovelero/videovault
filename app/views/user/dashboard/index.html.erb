@@ -11,6 +11,11 @@
 <h2 class="text-xl font-semibold mt-6 mb-2"><%= t '.latest_invitations' %></h2>
 
 <ul class="space-y-2">
+  <% if @invitations.empty? %>
+    <li class="border p-4 rounded bg-gray-100 text-center text-gray-500">
+      <%= t('.no_invitations_yet', default: 'No invitations yet.') %>
+    </li>
+  <% end %>
   <% @invitations.each do |invitation| %>
     <li class="border p-4 rounded bg-white shadow">
       <div class="flex items-center justify-between">
