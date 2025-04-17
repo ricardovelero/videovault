@@ -4,6 +4,6 @@ class InvitationMailer < ApplicationMailer
   def invite(invitation)
     @invitation = invitation
     @video = invitation.video
-    mail(to: @invitation.email, subject: "You have recieved an invitation to view a video")
+    mail(to: @invitation.email, from: "info@solucionesio.es", subject: "You have recieved an invitation to view a video")
   end
 end
