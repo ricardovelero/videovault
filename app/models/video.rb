@@ -2,7 +2,7 @@ class Video < ApplicationRecord
   require "cloudinary"
 
   belongs_to :user
-  has_many :invitations
+  has_many :invitations, dependent: :destroy
 
   attr_accessor :upload_file
   validates :title, presence: true
