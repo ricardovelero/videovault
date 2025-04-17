@@ -4,6 +4,8 @@ class Invitation < ApplicationRecord
 
   before_create :generate_token
 
+  validates :email, 'valid_email_2/email': { mx: true }
+
   def generate_token
     self.token ||= SecureRandom.hex(10)
   end
