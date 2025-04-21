@@ -44,11 +44,23 @@ class Admin::VideosController < ApplicationController
 
   def destroy
     @video = current_user.videos.find(params[:id])
+
+    if @video.file_url.present?
+      public_id = extract_public_id(@video.file_url)
+      Cloudinary::Uploader.destroy(public_id, resource_type: :video)
+    end
+
     @video.destroy
     redirect_to root_path, notice: "Video deleted successfully"
   end
 
   private
+
+  def extract_public_id(file_url)
+    uri = URI.parse(file_url)
+    path = uri.path.sub(%r{^/}, "") # remove leading slash
+    path.gsub(%r{^video/upload/}, "").sub(File.extname(path), "")
+  end
 
   def video_params
     params.require(:video).permit(:title, :description, :upload_file)
