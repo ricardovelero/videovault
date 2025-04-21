@@ -1,0 +1,19 @@
+class UploadToCloudinaryJob < ApplicationJob
+  queue_as :default
+
+  def perform(video_id, file_path)
+    Rails.logger.info "[UploadToCloudinaryJob] Iniciando subida para Video ##{video_id} desde #{file_path}"
+    video = Video.find(video_id)
+    uploaded = Cloudinary::Uploader.upload(file_path, resource_type: :video)
+    video.update(file_url: uploaded["secure_url"])
+    Rails.logger.info "[UploadToCloudinaryJob] Subida completada. URL: #{uploaded['secure_url']}"
+  rescue => e
+    Rails.logger.error "[UploadToCloudinaryJob] Error durante la subida: #{e.message}"
+    raise
+  ensure
+    if File.exist?(file_path)
+      File.delete(file_path)
+      Rails.logger.info "[UploadToCloudinaryJob] Archivo temporal eliminado: #{file_path}"
+    end
+  end
+end

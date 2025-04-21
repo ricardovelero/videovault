@@ -8,12 +8,14 @@ class Video < ApplicationRecord
   validates :title, presence: true
   validates :upload_file, presence: true, on: :create
 
-  before_create :upload_to_cloudinary
+  after_create_commit :enqueue_upload_job
 
-  def upload_to_cloudinary
+  def enqueue_upload_job
     return unless upload_file
 
-    uploaded = Cloudinary::Uploader.upload(upload_file.path, resource_type: :video)
-    self.file_url = uploaded["secure_url"]
+    tmp_path = Rails.root.join("tmp", "#{SecureRandom.uuid}_#{upload_file.original_filename}")
+    File.open(tmp_path, "wb") { |f| f.write(upload_file.read) }
+
+    UploadToCloudinaryJob.perform_later(id, tmp_path.to_s)
   end
 end
