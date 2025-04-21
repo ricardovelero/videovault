@@ -16,7 +16,7 @@ class Admin::VideosController < ApplicationController
 
     if @video.save
       respond_to do |format|
-        format.html { redirect_to root_path, notice: "Video uploaded correctly" }
+        format.html { redirect_to root_path, notice: "Video is being processed..." }
       end
     else
       render :new, status: :unprocessable_entity
