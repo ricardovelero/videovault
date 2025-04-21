@@ -14,6 +14,9 @@ importers:
       '@hotwired/turbo-rails':
         specifier: ^8.0.13
         version: 8.0.13
+      '@rails/actioncable':
+        specifier: ^8.0.200
+        version: 8.0.200
     devDependencies:
       vite:
         specifier: ^5.4.18
@@ -186,6 +189,9 @@ packages:
 
   '@rails/actioncable@7.2.201':
     resolution: {integrity: sha512-wsTdWoZ5EfG5k3t7ORdyQF0ZmDEgN4aVPCanHAiNEwCROqibSZMXXmCbH7IDJUVri4FOeAVwwbPINI7HVHPKBw==}
+
+  '@rails/actioncable@8.0.200':
+    resolution: {integrity: sha512-EDqWyxck22BHmv1e+mD8Kl6GmtNkhEPdRfGFT7kvsv1yoXd9iYrqHDVAaR8bKmU/syC5eEZ2I5aWWxtB73ukMw==}
 
   '@rollup/rollup-android-arm-eabi@4.40.0':
     resolution: {integrity: sha512-+Fbls/diZ0RDerhE8kyC6hjADCXA1K4yVNlH0EYfd2XjyH0UGgzaQ8MlT0pCXAThfxv3QUAczHaL+qSv1E4/Cg==}
@@ -519,6 +525,8 @@ snapshots:
       fastq: 1.19.1
 
   '@rails/actioncable@7.2.201': {}
+
+  '@rails/actioncable@8.0.200': {}
 
   '@rollup/rollup-android-arm-eabi@4.40.0':
     optional: true

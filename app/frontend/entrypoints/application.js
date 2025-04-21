@@ -46,3 +46,5 @@ Object.entries(controllers).forEach(([path, controller]) => {
 
   application.register(name, controller.default);
 });
+
+import "../channels/video_status_channel";

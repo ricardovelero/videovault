@@ -6,7 +6,10 @@ class UploadToCloudinaryJob < ApplicationJob
     video = Video.find(video_id)
     uploaded = Cloudinary::Uploader.upload(file_path, resource_type: :video)
     video.update(file_url: uploaded["secure_url"])
+
     Rails.logger.info "[UploadToCloudinaryJob] Subida completada. URL: #{uploaded['secure_url']}"
+
+    ActionCable.server.broadcast("video_status_#{video.user_id}", { video_id: video.id, file_url: video.file_url, status: "ready" })
   rescue => e
     Rails.logger.error "[UploadToCloudinaryJob] Error durante la subida: #{e.message}"
     raise
